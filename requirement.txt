@@ -1,0 +1,4 @@
+selenium==4.15.0
+fake-useragent==1.4.0  #For rotating user agents
+Pillow
+pytesseract==0.3.10

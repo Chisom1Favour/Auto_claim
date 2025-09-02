@@ -1,0 +1,17 @@
+{
+    "example_website": {
+        "url": "example-website/login"
+        "username": "your_username_here",
+        "password": "your_password_here",
+        "username_id": "username"
+        "password_id": "password",
+        "login_selector": "button[type='submit']",
+        "claim_selector": "//button[contains(text(), 'Claim')]"
+    },
+    "another_webiste": {
+        "url": "example2_website/login",
+        "username": "your_email@example2.com",
+        "password": "your_password_123",
+        "claim_selector": "//div[@class='claim-button']"
+    }
+}
