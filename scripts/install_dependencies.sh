@@ -27,7 +27,7 @@ pkg install wget -y
 
 # Install Chromium
 echo -e "${YELLOW}📦 Installing Chromium...${NC}"
-pkg install -y chromium
+pkg install -y chromium-browser
 
 # Install Python dependencies
 echo -e "${YELLOW}🐍 Installing Python packages...${NC}"
