@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!/bin/bash  # ✅ Alpine uses standard bash location
 
 # Colors for output
 RED='\033[0;31m'
@@ -13,7 +13,6 @@ echo -e "${BLUE}===============================${NC}"
 # Change to bot directory
 cd ~/auto_claim_bot || {
     echo -e "${RED}❌ Error: auto_claim_bot directory not found${NC}"
-    echo -e "${YELLOW}💡 Make sure you're in the right directory${NC}"
     exit 1
 }
 
@@ -22,8 +21,8 @@ command_exists() {
     command -v "$1" >/dev/null 2>&1
 }
 
-# Check and install dependencies if missing
-if ! command_exists chromium || ! command_exists chromedriver; then
+# Check and install dependencies if missing - ALPINE SPECIFIC
+if ! command_exists chromium-browser || ! command_exists chromedriver; then
     echo -e "${YELLOW}⚠️ Dependencies not found - running installation...${NC}"
     ./scripts/install_dependencies.sh
     # Check if installation succeeded
@@ -47,20 +46,21 @@ if [ ! -f "config/websites.json" ]; then
     exit 1
 fi
 
-# Validate config
+# Validate config - USE alpine-python
 echo -e "${YELLOW}🔍 Validating configuration...${NC}"
-python -m src.main --validate
+alpine-python -m src.main --validate  # ✅ Changed to alpine-python
 if [ $? -ne 0 ]; then
     echo -e "${RED}❌ Config validation failed!${NC}"
     echo -e "${YELLOW}💡 Check your config/websites.json file${NC}"
     exit 1
+    # ❌ REMOVE THE DUPLICATE exit 1 HERE
 fi
 
 echo -e "${GREEN}✅ Config validation passed!${NC}"
 echo -e "${YELLOW}🔄 Starting claim process...${NC}"
 
-# Run the main claim process
-python -m src.main --all
+# Run the main claim process - THIS PART IS CORRECT ✅
+alpine-python -m src.main --all
 exit_code=$?
 
 echo -e "${BLUE}===============================${NC}"
